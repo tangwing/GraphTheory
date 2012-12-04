@@ -1,4 +1,6 @@
-TP-Cpp-Graph-Dijkstra
+Graph Theory
 =====================
 
-A backup of the course of C++. Create a basic complete set of classes to manage graphs and apply Dijkstra.
+This is a collection of mini projects, which are all about Graph Theory!!!
+
+Search methods, minimum spanning tree, shortest path... and many other interesting things!
