@@ -1,7 +1,6 @@
 #include"stdafx.h"
 #include"Cgrahe.h"
 
-
 Cgraphe::Cgraphe(unsigned int n)
 {
 	uiGRAnb_sommet = n;
@@ -12,31 +11,9 @@ Cgraphe::Cgraphe(unsigned int n)
 	}
 }
 
-void Cgraphe::testGraphe()
+Csommet& Cgraphe::operator[](int index)
 {
-	cout<<uiGRAnb_sommet<<endl;
-	for(unsigned int i=0; i<uiGRAnb_sommet; i++)
-	{
-		cout<<pSOMlist[i].SOMget_nb_arc_arrivant()<<",";
-		cout<<pSOMlist[i].SOMget_nb_arc_partant()<<endl;
-	}
-    /*for(int i=0; i<3; i++)
-    {
-        cout<<pSOMlist[0].SOMget_arc_partant(i)->ARCget_dest_num()<<" "<<
-            pSOMlist[0].SOMget_arc_partant(i)->ARCget_val()<<endl;
-    }*/
-	unsigned int * const iChemin = GRAplus_court_chemin_Dijkstra(0);
-    //Test le sommet 10
-    cout<<"La longeur du pcc du sommet 10 :"<< pSOMlist[10].SOMget_val()<<endl;
-    int pere = iChemin[10];
-    cout<<10<<" <- ";
-    while( pere != -1)
-    {
-        cout<<pere<<" <- ";
-        pere = iChemin[pere];
-    }
-    cout<<"\b\b\b\b    "<<endl;
-
+    return pSOMlist[index];
 }
 
 void Cgraphe::GRAadd_arc(int sommetDepart, int valuation, int sommetArrive)
@@ -47,7 +24,8 @@ void Cgraphe::GRAadd_arc(int sommetDepart, int valuation, int sommetArrive)
 	pSOMlist[sommetArrive].SOMajouter_arc_arrivant(new Clist_arc(valuation, sommetDepart));
 }
 
-unsigned int * Cgraphe::GRAplus_court_chemin_Dijkstra( unsigned int uiSource)
+//Il faut retourner directment la distance.
+unsigned int * Cgraphe::GRAplus_court_chemin_Dijkstra( unsigned int uiSource, int *piDistance)
 {
 	unsigned int * puiChemin = new unsigned int[uiGRAnb_sommet];
 	unsigned int * puiLongeur = new unsigned int[uiGRAnb_sommet];
@@ -85,6 +63,7 @@ unsigned int * Cgraphe::GRAplus_court_chemin_Dijkstra( unsigned int uiSource)
             {
                 pSOMlist[iBoucle].SOMset_val( puiLongeur[iBoucle]);
             }
+            *piDistance = puiLongeur[uiGRAnb_sommet-1];
             delete [] puiLongeur;
             delete [] pbVisite;
             return puiChemin;
@@ -109,3 +88,5 @@ unsigned int * Cgraphe::GRAplus_court_chemin_Dijkstra( unsigned int uiSource)
         }
     }
 }
+
+

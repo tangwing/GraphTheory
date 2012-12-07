@@ -1,14 +1,12 @@
 /*********************
 Interface de la classe Clist_arc
-??pourquoi Clist_arc n'a qu'un seul num¨¦ro
-de sommet? C'est pas du g¨¦nie log
 ***********************/
+
 #ifndef CLIST_ARC_H
 #define CLIST_ARC_H
 #include "Ccellule.h"
 #include "stdafx.h"
 
-//Pourquoi pas private ou public
 class Clist_arc: protected Ccellule{
 
 private: 
@@ -36,14 +34,11 @@ public:
     int ARCget_flot(){return iARCflot;}
 	void ARCset_flot(int flot){iARCflot=flot;}
 
-    //Ces 2 fonctions doivent se mettre ici? oui
 	Clist_arc * ARCsearch_forward(int pos);
 	Clist_arc * ARCsearch_backward(int pos);
-
-    //
+    
 	void ARCchainer_apres(Clist_arc * new_arc);
 	void ARCsupprimer();
 	
-	//void ARCset_succ(Clist_arc* succ);
 };
 #endif

@@ -1,6 +1,6 @@
 // GraphCpp.cpp : Defines the entry point for the console application.
 /*Pbs:
-1, constructeur de recopie : n¨¦cessaire?
+1, constructeur de recopie?
 2, num de sommet dans Clist_arc
 3, Il peut y avoir plusieur ppc, comment return
 4, arc arrivant, pour quoi faire?
@@ -9,15 +9,20 @@
 #include "Cgrahe.h"
 
 Cgraphe* creer_graphe();
+void testGraphe( Cgraphe*);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    //Clist_arc* tmp = new Clist_arc(3, 4,3);
-    //cout<<"int main :"<<tmp->ARCget_dest_num()<<
-    //              "  "<<tmp->ARCget_val()<<endl;
+    //Ccellule c;
+    //cout<<c.test;
 	Cgraphe* GRAtp = creer_graphe();
-	GRAtp->testGraphe();
+	testGraphe(GRAtp);
 	return 0;
+}
+
+Cgraphe* creer_graphe(char* path)
+{
+    return NULL;
 }
 
 Cgraphe* creer_graphe()//int** g, unsigned int )
@@ -39,3 +44,29 @@ Cgraphe* creer_graphe()//int** g, unsigned int )
 	GRAtp->GRAadd_arc(9,3,10);
 	return GRAtp;
 }
+
+/*Une petite m¨¦thod pour tester*/
+void testGraphe(Cgraphe* graphe)
+{
+	cout<<"The total number of vertexes:"<<graphe->GRAget_nb_sommet()<<endl;
+	for(unsigned int i=0; i<graphe->GRAget_nb_sommet(); i++)
+	{
+		cout<<(*graphe)[i].SOMget_nb_arc_arrivant()<<",";
+		cout<<(*graphe)[i].SOMget_nb_arc_partant()<<endl;
+	}
+    
+    int iDistance;
+	unsigned int * const iChemin = graphe->GRAplus_court_chemin_Dijkstra(0, &iDistance);
+    //Test le sommet 10
+    cout<<"La longeur du pcc du sommet 10 :"<< iDistance<<endl;//pSOMlist[10].SOMget_val()<<endl;
+    int pere = iChemin[10];
+    cout<<10<<" <- ";
+    while( pere != -1)
+    {
+        cout<<pere<<" <- ";
+        pere = iChemin[pere];
+    }
+    cout<<"\b\b\b\b    "<<endl;
+
+}
+

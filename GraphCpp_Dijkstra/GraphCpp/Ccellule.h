@@ -9,11 +9,12 @@ protected:
 	Ccellule *pCELpere;
 	Ccellule *pCELfils;
 public:
+    
 	Ccellule();
 	~Ccellule(){};//La cellule doit avoir ижtиж extraite!
-	//Ccellule( Ccellule& CELsrc);
-	//Ccellule & operator= (Ccellule & CELvar);
-
+    //On ne veut pas une recopie membre ид membre!
+	Ccellule( Ccellule& CELsrc) {pCELpere=pCELfils=NULL;}
+	Ccellule & operator= (Ccellule & CELvar) {pCELpere=pCELfils=NULL;}
 	Ccellule * CELchercher_prev(int iPosition);
 	Ccellule * CELchercher_suiv(int iPosition);
 	void CELchainer_apres( Ccellule* pere);

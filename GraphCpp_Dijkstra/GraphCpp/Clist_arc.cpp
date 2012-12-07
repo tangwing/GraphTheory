@@ -16,7 +16,7 @@ Clist_arc * Clist_arc::ARCsearch_backward(int pos)
 }
 
 //Chainer l'arc courant ид la suite de celui dans le para
-void Clist_arc::ARCchainer_apres(Clist_arc * arc_pere)
+void Clist_arc::ARCchainer_apres(Clist_arc * arc_pere) 
 {
 	if( arc_pere == NULL ) throw new Cexception(BAD_PARA);
 	CELchainer_apres(arc_pere);
